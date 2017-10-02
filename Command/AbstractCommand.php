@@ -14,6 +14,9 @@ use Psr\Container\NotFoundExceptionInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
+/**
+ * 
+ */
 abstract class AbstractCommand extends PhystrixAbstractCommand
 {
     /**

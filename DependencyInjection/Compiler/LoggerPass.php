@@ -20,7 +20,6 @@ final class LoggerPass  implements CompilerPassInterface
 {
     /**
      * @inheritdoc
-     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
      * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
      */
     public function process(ContainerBuilder $container): void
