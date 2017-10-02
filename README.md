@@ -113,10 +113,10 @@ How to add logger to Commands: define `logger.phystrix` service
 monolog:
     channels: ['phystrix']
 ```
-or
+and
 ```yml
 # services.yml
 services:
     logger.phystrix:
-        alias: logger
+        alias: monolog.logger.phystrix
 ```

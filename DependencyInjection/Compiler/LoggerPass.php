@@ -24,7 +24,7 @@ final class LoggerPass  implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container): void
     {
-        if ($container->hasDefinition('logger.phystrix')) {
+        if ($container->hasDefinition('logger.phystrix') || $container->hasAlias('logger.phystrix')) {
             $definition = $container->getDefinition('phystrix.service_locator');
             $definition->addMethodCall('set', ['logger', new Reference('logger.phystrix')]);
         }
