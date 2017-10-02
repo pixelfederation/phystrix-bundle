@@ -104,3 +104,19 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+### Logger
+
+How to add logger to Commands: define `logger.phystrix` service
+```yml
+# config.yml
+monolog:
+    channels: ['phystrix']
+```
+or
+```yml
+# services.yml
+services:
+    logger.phystrix:
+        alias: logger
+```

@@ -19,8 +19,22 @@
  */
 namespace Odesk\Bundle\PhystrixBundle;
 
+use Odesk\Bundle\PhystrixBundle\DependencyInjection\Compiler\LoggerPass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
+/**
+ *
+ */
 class OdeskPhystrixBundle extends Bundle
 {
+    /**
+     * @inheritdoc
+     */
+    public function build(ContainerBuilder $container): void
+    {
+        parent::build($container);
+
+        $container->addCompilerPass(new LoggerPass());
+    }
 }
