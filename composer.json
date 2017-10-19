@@ -1,5 +1,5 @@
 {
-    "name": "odesk/phystrix-bundle",
+    "name": "pixelfederation/phystrix-bundle",
     "description": "Phystrix integration with Symfony2 framework.",
     "type": "symfony-bundle",
     "license": "Apache-2.0",
