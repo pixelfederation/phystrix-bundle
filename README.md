@@ -1,6 +1,5 @@
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/c009dadf-a219-4808-b888-e9abad9a73bf/mini.png)](https://insight.sensiolabs.com/projects/c009dadf-a219-4808-b888-e9abad9a73bf)
-[![Build Status](https://travis-ci.org/upwork/phystrix-bundle.svg)](https://travis-ci.org/upwork/phystrix-bundle)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/odesk/phystrix-bundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/odesk/phystrix-bundle/?branch=master)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/eb56ba95-d82a-4a81-b207-c04372f5e7a1/mini.png)](https://insight.sensiolabs.com/projects/eb56ba95-d82a-4a81-b207-c04372f5e7a1)
+[![Build Status](https://travis-ci.org/pixelfederation/phystrix-bundle.svg)](https://travis-ci.org/pixelfederation/phystrix-bundle)
 
 
 # Phystrix Bundle
