@@ -14,7 +14,7 @@ Update your project's `composer.json` file to include dependency.
 
 ```json
 "require": {
-    "odesk/phystrix-bundle": "~1.1"
+    "pixelfederation/phystrix-bundle": "~1.1"
 }
 ```
 
