@@ -86,6 +86,42 @@ $command = $container->get('phystrix.command_factory')->getCommand('MyCommand', 
 $command->execute();
 ```
 
+
+### Logger
+
+How to add logger to Commands: define `logger.phystrix` service
+```yaml
+# config.yml
+monolog:
+    channels: ['phystrix']
+```
+and
+```yaml
+# services.yml
+services:
+    logger.phystrix:
+        alias: monolog.logger.phystrix
+```
+
+### Redis state storage
+Require redis state storage [pixelfederation/phystrix-redis](https://github.com/pixelfederation/phystrix-redis) package:
+
+```bash
+composer require pixelfederation/phystrix-redis
+```
+Override state storage configuration:
+
+```yaml
+# services.yml
+services:
+    PixelFederation\Phystrix\Storage\RedisStateStorage:
+        arguments:
+            - '@snc_redis.cache'
+
+    phystrix.state_storage:
+        alias: PixelFederation\Phystrix\Storage\RedisStateStorage
+```
+
 ### License
 
 This file is a part of the Phystrix Bundle
@@ -103,19 +139,3 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-
-### Logger
-
-How to add logger to Commands: define `logger.phystrix` service
-```yml
-# config.yml
-monolog:
-    channels: ['phystrix']
-```
-and
-```yml
-# services.yml
-services:
-    logger.phystrix:
-        alias: monolog.logger.phystrix
-```
