@@ -70,4 +70,12 @@ class RequestLogDataCollector extends DataCollector
     {
         return 'phystrix';
     }
+
+    /**
+     * Resets this data collector to its initial state.
+     */
+    public function reset()
+    {
+        $this->data = [];
+    }
 }
