@@ -15,35 +15,35 @@ parameters:
 services:
 
   phystrix.configuration:
-    class: %phystrix.configuration.class%
+    class: "%phystrix.configuration.class%"
     public: false
     arguments:
-      - %phystrix.configuration.data%
+      - "%phystrix.configuration.data%"
 
   phystrix.service_locator:
-    class: %phystrix.service_locator.class%
+    class: "%phystrix.service_locator.class%"
 
   phystrix.state_storage:
-    class: %phystrix.state_storage.class%
+    class: "%phystrix.state_storage.class%"
 
   phystrix.circuit_breaker_factory:
-    class: %phystrix.circuit_breaker_factory.class%
+    class: "%phystrix.circuit_breaker_factory.class%"
     arguments:
       - "@phystrix.state_storage"
 
   phystrix.command_metrics_factory:
-    class: %phystrix.command_metrics_factory.class%
+    class: "%phystrix.command_metrics_factory.class%"
     arguments:
       - "@phystrix.state_storage"
 
   phystrix.request_cache:
-    class: %phystrix.request_cache.class%
+    class: "%phystrix.request_cache.class%"
 
   phystrix.request_log:
-    class: %phystrix.request_log.class%
+    class: "%phystrix.request_log.class%"
 
   phystrix.command_factory:
-    class: %phystrix.command_factory.class%
+    class: "%phystrix.command_factory.class%"
     arguments:
       - "@phystrix.configuration"
       - "@phystrix.service_locator"
@@ -53,7 +53,7 @@ services:
       - "@phystrix.request_log"
 
   phystrix.data_collector:
-    class: %phystrix.data_collector.class%
+    class: "%phystrix.data_collector.class%"
     arguments:
       - "@phystrix.request_log"
     tags:
