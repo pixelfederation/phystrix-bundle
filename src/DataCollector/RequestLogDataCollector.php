@@ -18,6 +18,8 @@
  * limitations under the License.
  */
 
+declare(strict_types=1);
+
 namespace Odesk\Bundle\PhystrixBundle\DataCollector;
 
 use Odesk\Phystrix\AbstractCommand;
