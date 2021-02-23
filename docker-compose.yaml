@@ -1,8 +1,8 @@
 version: '3.3'
 
 services:
-  phystrix-bundle:
-    container_name: phystrix-bundle
+  php-phystrix-bundle:
+    container_name: php-phystrix-bundle
     image: php:7.4-cli
     volumes:
       - .:/app:delegated
