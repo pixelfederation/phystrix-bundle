@@ -21,6 +21,7 @@ services:
       - "%phystrix.configuration.data%"
 
   phystrix.service_locator:
+    public: true
     class: "%phystrix.service_locator.class%"
 
   phystrix.state_storage:
@@ -43,6 +44,7 @@ services:
     class: "%phystrix.request_log.class%"
 
   phystrix.command_factory:
+    public: true
     class: "%phystrix.command_factory.class%"
     arguments:
       - "@phystrix.configuration"

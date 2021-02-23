@@ -17,6 +17,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Odesk\Bundle\PhystrixBundle\DataCollector;
 
 use Odesk\Phystrix\AbstractCommand;
@@ -24,13 +25,14 @@ use Odesk\Phystrix\RequestLog;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\DataCollector\DataCollector;
+use Throwable;
 
 /**
  * Collects data from Phystrix RequestLog. Makes it compatible to use with Symfony profiler and WebProfiler.
  */
 class RequestLogDataCollector extends DataCollector
 {
-    private $requestLog;
+    private RequestLog $requestLog;
 
     public function __construct(RequestLog $requestLog)
     {
@@ -38,11 +40,11 @@ class RequestLogDataCollector extends DataCollector
     }
 
     /**
-     * {@inheritdoc}
+     * phpcs:disable Generic.CodeAnalysis.UnusedFunctionParameter
      */
-    public function collect(Request $request, Response $response, \Exception $exception = null)
+    public function collect(Request $request, Response $response, ?Throwable $exception = null): void
     {
-        $this->data = array('commands' => array());
+        $this->data = ['commands' => []];
 
         /** @var AbstractCommand $command */
         foreach ($this->requestLog->getExecutedCommands() as $command) {
@@ -50,23 +52,26 @@ class RequestLogDataCollector extends DataCollector
             if (!$time) {
                 $time = 0;
             }
-            $this->data['commands'][] = array(
+            $this->data['commands'][] = [
                 'class' => get_class($command),
                 'duration' => $time,
                 'events' => $command->getExecutionEvents(),
-            );
+            ];
         }
     }
 
-    public function getCommands()
+    /**
+     * @return array<string, string|int|array<string>>
+     */
+    public function getCommands(): array
     {
-        return $this->data['commands'];
+        /** @var array<string, string|int|array<string>> $data */
+        $data = $this->data['commands'];
+
+        return $data;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
+    public function getName(): string
     {
         return 'phystrix';
     }
@@ -74,7 +79,7 @@ class RequestLogDataCollector extends DataCollector
     /**
      * Resets this data collector to its initial state.
      */
-    public function reset()
+    public function reset(): void
     {
         $this->data = [];
     }

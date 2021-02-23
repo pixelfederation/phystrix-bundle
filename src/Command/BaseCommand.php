@@ -1,33 +1,24 @@
 <?php
+
 declare(strict_types=1);
 
-/**
- * @author    mskorupa
+/*
+ * @author mskorupa
  * @copyright PIXEL FEDERATION
- * @license:  Internal use only
+ * @license: Internal use only
  */
 
 namespace Odesk\Bundle\PhystrixBundle\Command;
 
 use Odesk\Phystrix\AbstractCommand as PhystrixAbstractCommand;
-use Psr\Container\NotFoundExceptionInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Throwable;
 
-/**
- * 
- */
-abstract class AbstractCommand extends PhystrixAbstractCommand
+abstract class BaseCommand extends PhystrixAbstractCommand
 {
-    /**
-     * @var LoggerInterface
-     */
-    protected $logger;
+    protected ?LoggerInterface $logger = null;
 
-    /**
-     * @return LoggerInterface
-     * @throws \Psr\Container\ContainerExceptionInterface
-     */
     protected function getLogger(): LoggerInterface
     {
         if ($this->logger !== null) {
@@ -35,8 +26,11 @@ abstract class AbstractCommand extends PhystrixAbstractCommand
         }
 
         try {
-            $this->logger = $this->serviceLocator->get('logger');
-        } catch (NotFoundExceptionInterface $e) {
+            /** @var LoggerInterface $logger */
+            $logger = $this->serviceLocator->get('logger');
+
+            $this->logger = $logger;
+        } catch (Throwable $e) {
             $this->logger = new NullLogger();
         }
 

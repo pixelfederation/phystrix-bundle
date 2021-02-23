@@ -1,7 +1,7 @@
 <phpunit bootstrap = "./vendor/autoload.php" >
     <testsuites>
         <testsuite name="OdeskPhystrixBundle Test Suite">
-            <directory>./Tests</directory>
+            <directory>./tests</directory>
         </testsuite>
     </testsuites>
 

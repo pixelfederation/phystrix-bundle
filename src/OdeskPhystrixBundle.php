@@ -17,20 +17,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Odesk\Bundle\PhystrixBundle;
 
 use Odesk\Bundle\PhystrixBundle\DependencyInjection\Compiler\LoggerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-/**
- *
- */
 class OdeskPhystrixBundle extends Bundle
 {
-    /**
-     * @inheritdoc
-     */
     public function build(ContainerBuilder $container): void
     {
         parent::build($container);
