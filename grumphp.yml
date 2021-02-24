@@ -1,0 +1,42 @@
+grumphp:
+  hooks_dir: bin/grumphp_hooks
+  stop_on_failure: true
+  process_timeout: 600
+  ignore_unstaged_changes: true
+  git_hook_variables:
+    EXEC_GRUMPHP_COMMAND: './bin/grumphp_hooks/environment_spinup && docker exec -i php-phystrix-bundle'
+  tasks:
+    phpcs:
+      standard: 'phpcs.ruleset.xml'
+      tab_width: 4
+      whitelist_patterns: []
+      encoding: utf-8
+      ignore_patterns: []
+      sniffs: []
+      triggered_by: [php]
+    phpmd:
+      ruleset: ['phpmd.ruleset.xml']
+    phpcsfixer2:
+      cache_file: '.php_cs.cache'
+      allow_risky: true
+      config: '.php_cs'
+      using_cache: true
+      config_contains_finder: true
+      verbose: false
+      diff: true
+      triggered_by: ['php']
+    phplint: ~
+    phpunit:
+      config_file: ~
+      always_execute: true
+    phpversion: ~
+    shell: ~
+    psalm:
+      config: 'psalm.xml'
+      no_cache: false
+      ignore_patterns:
+        - vendor/
+      report: ~
+      threads: 1
+      triggered_by: ['php']
+      show_info: true

@@ -17,6 +17,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+declare(strict_types=1);
+
 namespace Odesk\Bundle\PhystrixBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -27,11 +30,19 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class Configuration implements ConfigurationInterface
 {
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('phystrix');
         $rootNode = $treeBuilder->getRootNode();
 
+        /**
+         * @formatter:off
+         *
+         * @codingStandardsIgnoreStart
+         * @psalm-suppress PossiblyNullReference unable to determine correct type due limitation of symfony ArrayNodeDefinition
+         * @psalm-suppress MixedMethodCall unable to determine correct type due limitation of symfony ArrayNodeDefinition
+         * @psalm-suppress PossiblyUndefinedMethod unable to determine correct type due limitation of symfony ArrayNodeDefinition
+         */
         $rootNode
             ->useAttributeAsKey('name')
             ->prototype('array')
@@ -43,7 +54,7 @@ class Configuration implements ConfigurationInterface
                         ->children()
                             ->integerNode('errorThresholdPercentage')->defaultValue(50)->end()
                             ->integerNode('requestVolumeThreshold')->defaultValue(20)->end()
-                            ->integerNode('sleepWindowInMilliseconds')->defaultValue(5000)->end()
+                            ->integerNode('sleepWindowInMilliseconds')->defaultValue(5_000)->end()
                             ->booleanNode('forceOpen')->defaultValue(false)->end()
                             ->booleanNode('forceClosed')->defaultValue(false)->end()
                         ->end()
@@ -51,8 +62,8 @@ class Configuration implements ConfigurationInterface
                     ->arrayNode('metrics')
                         ->addDefaultsIfNotSet()
                         ->children()
-                            ->integerNode('healthSnapshotIntervalInMilliseconds')->defaultValue(1000)->end()
-                            ->integerNode('rollingStatisticalWindowInMilliseconds')->defaultValue(1000)->end()
+                            ->integerNode('healthSnapshotIntervalInMilliseconds')->defaultValue(1_000)->end()
+                            ->integerNode('rollingStatisticalWindowInMilliseconds')->defaultValue(1_000)->end()
                             ->integerNode('rollingStatisticalWindowBuckets')->defaultValue(10)->end()
                         ->end()
                     ->end()
@@ -61,11 +72,13 @@ class Configuration implements ConfigurationInterface
                 ->end()
             ->end()
             ->validate()
-                ->ifTrue(function ($data) {
-                        return !array_key_exists('default', $data);
-                })
+                ->ifTrue(static fn ($data) => !array_key_exists('default', $data))
                 ->thenInvalid("'default' configuration should be set")
             ->end();
+        /**
+         * @codingStandardsIgnoreEnd
+         * @formatter:on
+         */
 
         return $treeBuilder;
     }
