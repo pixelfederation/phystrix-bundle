@@ -59,4 +59,4 @@ services:
     arguments:
       - "@phystrix.request_log"
     tags:
-      - { name: data_collector, template: "OdeskPhystrixBundle:Collector:phystrix", id: "phystrix"}
+      - { name: data_collector, template: "@OdeskPhystrix/Collector/phystrix.html.twig", id: "phystrix"}

@@ -2,29 +2,31 @@
 
 {% block toolbar %}
     {% set icon %}
-    <span>
+<span>
         <span>
             {% if collector.commands|length %}
-                {{ collector.commands|length }} Phystrix commands executed
+            <span class="sf-toolbar-value">{{ collector.commands|length }}</span> <span class="sf-toolbar-label">Phystrix commands executed</span>
             {% else %}
-                No Phystrix commands executed
+                <span class="sf-toolbar-value">
+                    No Phystrix commands executed
+                <span>
             {% endif %}
         </span>
     </span>
     {% endset %}
-    {% include '@WebProfiler/Profiler/toolbar_item.html.twig' with { 'link': profiler_url } %}
-{% endblock %}
+            {% include '@WebProfiler/Profiler/toolbar_item.html.twig' with { 'link': profiler_url } %}
+            {% endblock %}
 
-{% block menu %}
-    <span class="label">
+            {% block menu %}
+                <span class="label">
         <strong>Phystrix</strong>
     </span>
-{% endblock %}
+            {% endblock %}
 
-{% block panel %}
-    <h2>Phystrix commands executed</h2>
+            {% block panel %}
+                <h2>Phystrix commands executed</h2>
     {% if collector.commands|length %}
-        <table>
+                <table>
             <thead>
             <tr>
                 <th scope="col" style="width: 25%">Command</th>
@@ -43,8 +45,8 @@
             </tbody>
         </table>
     {% else %}
-        <p>
+                <p>
             <em>No Phystrix commands have been executed</em>
         </p>
-    {% endif %}
-{% endblock %}
+            {% endif %}
+            {% endblock %}

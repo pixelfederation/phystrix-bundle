@@ -8,6 +8,6 @@ export PATH="/usr/local/bin:$PATH"
 #
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-if [[ -z `docker-compose ps -q php-phystrix-bundle` ]] || [[ -z `docker ps -q --no-trunc | grep $(docker-compose ps -q php-phystrix-bundle)` ]]; then
+if [[ -z `docker-compose ps -q phystrix-bundle-php` ]] || [[ -z `docker ps -q --no-trunc | grep $(docker-compose ps -q phystrix-bundle-php)` ]]; then
   docker-compose up -d
 fi
